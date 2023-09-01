@@ -9,6 +9,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import RedFrameDetailsScreen from './screens/RedFrameDetailsScreen';
 import BlackFrameDetailsScreen from './screens/BlackFrameDetailsScreen';
+import ProfileScreen from './screens/ProfileScreen';
 import BibleScreen from './screens/BibleScreen';
 import EventsScreen from './screens/EventsScreen';
 
@@ -48,6 +49,21 @@ const BibleTab = () => (
   </Stack.Navigator>
 );
 
+const ProfileTab = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+  </Stack.Navigator>
+);
+
+const CustomTabBarIcon = () => {
+  return (
+    <Image
+      source={{ uri: 'https://example.com/path/to/user/profile/photo.jpg' }}
+      style={{ width: 30, height: 30, borderRadius: 15 }}
+    />
+  );
+};
+
 const App = () => {
  
   return (
@@ -57,7 +73,7 @@ const App = () => {
           activeTintColor: 'red',
           inactiveTintColor: 'black',
           style: {
-            backgroundColor: 'white', // Background color of the tab bar
+            backgroundColor: 'white',
           },
           labelStyle: {
             fontSize: 16,
@@ -77,6 +93,11 @@ const App = () => {
         <Tab.Screen name="Sermons" component={SermonsTab} />
         <Tab.Screen name="Events" component={EventsTab} />
         <Tab.Screen name="Bible" component={BibleTab} />
+        <Tab.Screen 
+          name="Profile" 
+          component={ProfileTab} 
+          options={{ tabBarIcon: () => <CustomTabBarIcon /> }}
+        />
         {/* Add more tab screens here */}
       </Tab.Navigator>
     </NavigationContainer>

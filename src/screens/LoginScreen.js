@@ -1,15 +1,42 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+import axios from 'axios'; // Import axios
 
-const LoginScreen = ({ navigation }) => {  // Notice the navigation argument here
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Your login logic here
+  const handleLogin = async () => {
     console.log('Logging in:', email, password);
+    try {
+      const response = await axios.post('http://192.168.254.129:5005/auth/login', {
+        email,
+        password,
+      });
+      
+      if (response && response.status === 200 && response.data) {
+        const { token } = response.data;
+    
+        // Save token to AsyncStorage
+        await AsyncStorage.setItem('userToken', token);
+    
+        // Extract username from email
+        const username = email.split('@')[0];
+    
+        // Save username and email to AsyncStorage
+        await AsyncStorage.setItem('userName', username);
+        await AsyncStorage.setItem('email', email);
+    
+        navigation.navigate('Profile', { screen: 'ProfileScreen', params: { email: email } });
+      } else {
+        console.log('Invalid login credentials');
+      }
+    } catch (error) {
+      console.log('Error during login:', error);
+    }
   };
-
+    
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Login</Text>
