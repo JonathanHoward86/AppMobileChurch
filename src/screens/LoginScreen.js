@@ -14,20 +14,20 @@ const LoginScreen = ({ navigation }) => {
         email,
         password,
       });
-      
+
       if (response && response.status === 200 && response.data) {
         const { token } = response.data;
-    
-        // Save token to AsyncStorage
-        await AsyncStorage.setItem('userToken', token);
-    
+
         // Extract username from email
         const username = email.split('@')[0];
-    
-        // Save username and email to AsyncStorage
-        await AsyncStorage.setItem('userName', username);
-        await AsyncStorage.setItem('email', email);
-    
+
+        // Save token, username and email to AsyncStorage
+        await Promise.all([
+          AsyncStorage.setItem('userToken', token),
+          AsyncStorage.setItem('userName', username),
+          AsyncStorage.setItem('email', email),
+        ]);
+
         navigation.navigate('Profile', { screen: 'ProfileScreen', params: { email: email } });
       } else {
         console.log('Invalid login credentials');
@@ -36,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
       console.log('Error during login:', error);
     }
   };
-    
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Login</Text>
@@ -68,37 +68,37 @@ const LoginScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-    },
-    header: {
-        fontSize: 24,
-        marginBottom: 20,
-    },
-    input: {
-        width: '100%',
-        height: 40,
-        padding: 10,
-        borderWidth: 1,
-        borderColor: 'gray',
-        marginBottom: 15,
-    },
-    button: {
-        backgroundColor: 'blue',
-        padding: 10,
-        width: '100%',
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: 'white',
-    },
-    link: {
-        color: 'blue',
-        marginTop: 15,
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  header: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    width: '100%',
+    height: 40,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    marginBottom: 15,
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 10,
+    width: '100%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+  },
+  link: {
+    color: 'blue',
+    marginTop: 15,
+  },
 });
 
 export default LoginScreen;

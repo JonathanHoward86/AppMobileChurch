@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.3",
+    "@react-native-picker/picker": "^2.5.0",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "axios": "^1.5.0",
     "react": "18.2.0",
     "react-native": "0.72.4",
+    "react-native-calendars": "^1.1301.0",
     "react-native-gesture-handler": "^2.12.1",
     "react-native-image-picker": "^5.6.1",
     "react-native-reanimated": "^3.4.2",
@@ -25,6 +27,7 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-video": "^5.2.1",
     "react-native-webview": "^13.5.1",
+    "react-time-picker": "^6.5.0",
     "redux-thunk": "^2.4.2"
   },
   "devDependencies": {

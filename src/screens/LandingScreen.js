@@ -1,17 +1,13 @@
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import LoginButton from '../components/LoginButton';
 
 const LandingScreen = ({ navigation }) => {
-  const handleFrameClick = (screenName) => {
+const handleFrameClick = (screenName) => {
     navigation.navigate(screenName);
   };
 
   return (
     <ScrollView style={styles.container}>
-      {/* Add LoginButton at the top */}
-      <LoginButton />
-
       <TouchableOpacity
         style={[styles.frame, styles.redFrame]}
         onPress={() => handleFrameClick('RedFrameDetails')}
