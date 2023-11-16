@@ -7,8 +7,9 @@ import LandingScreen from './screens/LandingScreen';
 import VideoLibraryScreen from './screens/VideoLibraryScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
-import RedFrameDetailsScreen from './screens/RedFrameDetailsScreen';
-import BlackFrameDetailsScreen from './screens/BlackFrameDetailsScreen';
+import WorkoutGeneratorScreen from './screens/WorkoutGeneratorScreen';
+import SelectionScreen from './screens/SelectionScreen';
+import ResultsScreen from './screens/ResultsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import BibleScreen from './screens/BibleScreen';
 import CalendarScreen from './screens/CalendarScreen';
@@ -54,7 +55,7 @@ const LandingStack = () => (
       }}
     >
     <Stack.Screen 
-      name="Landing" 
+      name="Home" 
       component={LandingScreen}
     />
     <Stack.Screen 
@@ -66,12 +67,16 @@ const LandingStack = () => (
       component={RegisterScreen}
     />
     <Stack.Screen 
-      name="RedFrameDetails" 
-      component={RedFrameDetailsScreen}
+      name="WorkoutGenerator" 
+      component={WorkoutGeneratorScreen}
     />
     <Stack.Screen 
-      name="BlackFrameDetails" 
-      component={BlackFrameDetailsScreen}
+      name="SelectionScreen" 
+      component={SelectionScreen}
+    />
+    <Stack.Screen
+      name="ResultsScreen"
+      component={ResultsScreen}
     />
   </Stack.Navigator>
 );
@@ -79,7 +84,6 @@ const LandingStack = () => (
 const LoginStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="LoginScreen" component={LoginScreen} />
-    {/* Add other screens if necessary */}
   </Stack.Navigator>
 );
 
@@ -88,7 +92,7 @@ const SermonsTab = () => (
     <Stack.Screen 
       name="SermonsTab" 
       component={VideoLibraryScreen} 
-      options={{ title: ''}}
+      options={{ headerShown: false }}
     />
   </Stack.Navigator>
 );
@@ -98,7 +102,7 @@ const CalendarTab = () => (
     <Stack.Screen 
       name="CalendarTab" 
       component={CalendarScreen}
-      options={{ title: ''}} 
+      options={{ headerShown: false }} 
     />
   </Stack.Navigator>
 );
@@ -108,7 +112,7 @@ const BibleTab = () => (
     <Stack.Screen 
       name="BibleTab" 
       component={BibleScreen}
-      options={{ title: ''}}
+      options={{ headerShown: false }}
     />
   </Stack.Navigator>
 );
@@ -118,7 +122,7 @@ const ProfileTab = () => (
     <Stack.Screen 
       name="ProfileScreen" 
       component={ProfileScreen}
-      options={{ title: ''}}
+      options={{ headerShown: false }}
     />
   </Stack.Navigator>
 );
@@ -163,7 +167,8 @@ const App = () => {
           name="Landing"
           component={LandingStack}
           options={{
-            tabBarLabel: '', //Hide the label
+            headerShown: '',
+            tabBarLabel: '',
             tabBarIcon: ({ color }) => (
               <Text style={{ color, fontSize: TAB_LABEL_FONT_SIZE, fontWeight: TAB_BAR_FONT_WEIGHT }}>Home</Text>
             ),
@@ -173,7 +178,8 @@ const App = () => {
           name="Sermons" 
           component={SermonsTab}
           options={{
-            tabBarLabel: '', //Hide the label
+            headerShown: '',
+            tabBarLabel: '',
             tabBarIcon: ({ color }) => (
               <Text style={{ color, fontSize: TAB_LABEL_FONT_SIZE, fontWeight: TAB_BAR_FONT_WEIGHT }}>Sermons</Text>
             ),
@@ -183,7 +189,8 @@ const App = () => {
           name="Calendar" 
           component={CalendarTab}
           options={{
-            tabBarLabel: '', //Hide the label
+            headerShown: '',
+            tabBarLabel: '',
             tabBarIcon: ({ color }) => (
               <Text style={{ color, fontSize: TAB_LABEL_FONT_SIZE, fontWeight: TAB_BAR_FONT_WEIGHT }}>Calendar</Text>
             ),
@@ -193,7 +200,8 @@ const App = () => {
           name="Bible" 
           component={BibleTab}
           options={{
-            tabBarLabel: '', //Hide the label
+            headerShown: '',
+            tabBarLabel: '',
             tabBarIcon: ({ color }) => (
               <Text style={{ color, fontSize: TAB_LABEL_FONT_SIZE, fontWeight: TAB_BAR_FONT_WEIGHT }}>Bible</Text>
             ),
@@ -203,6 +211,7 @@ const App = () => {
           name="Login"
           component={LoginStack}
           options={{
+            headerShown: '',
             tabBarLabel: '',
             tabBarIcon: ({ color }) => (
               <Text style={{ color, fontSize: TAB_LABEL_FONT_SIZE, fontWeight: TAB_BAR_FONT_WEIGHT }}>Login</Text>
@@ -213,6 +222,7 @@ const App = () => {
           name="Profile"
           component={ProfileTab}
           options={{
+            headerShown: '',
             tabBarLabel: '', // Hide the label
             tabBarIcon: ({ color }) => (
               <View style={{ alignItems: 'center' }}>

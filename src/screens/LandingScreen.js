@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { ScrollView, ImageBackground, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const LandingScreen = ({ navigation }) => {
 const handleFrameClick = (screenName) => {
@@ -7,29 +7,26 @@ const handleFrameClick = (screenName) => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <TouchableOpacity
-        style={[styles.frame, styles.redFrame]}
-        onPress={() => handleFrameClick('RedFrameDetails')}
-      >
-        <Text style={styles.frameText}>Red Frame</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={[styles.frame, styles.blackFrame]}
-        onPress={() => handleFrameClick('BlackFrameDetails')}
-      >
-        <Text style={styles.frameText}>Black Frame</Text>
-      </TouchableOpacity>
-
-      {/* Add more frames here */}
-    </ScrollView>
+    <ImageBackground source={require('../assets/background.jpg')} style={styles.backgroundImage}>
+      <ScrollView style={styles.container}>
+        <TouchableOpacity
+          style={[styles.frame, styles.workoutGenerator]}
+          onPress={() => handleFrameClick('WorkoutGenerator')}
+        >
+          <Text style={styles.frameText}>WorkoutGenerator</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
   },
   frame: {
     height: 200,
@@ -38,17 +35,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  redFrame: {
-    backgroundColor: 'red',
-  },
-  blackFrame: {
-    backgroundColor: 'black',
-    borderColor: 'red',
-    borderWidth: 2,
+  workoutGenerator: {
+    backgroundColor: 'grey',
+    width: 180,
+    height: 70,
+    alignSelf: 'center',
   },
   frameText: {
     color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
